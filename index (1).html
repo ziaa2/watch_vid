@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruang Tonton</title>
+<style>
+:root{--bg:#f5f4fa;--sf:#fff;--tx:#1a1a2e;--mu:#6b6b85;--ac:#5443d6;--on:#fff;--ln:#e2e0ee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13141d;--sf:#1d1f2e;--tx:#ecebf7;--mu:#9a9ab5;--ac:#a597ff;--on:#13141d;--ln:#2b2d40}}
+:root[data-theme="dark"]{--bg:#13141d;--sf:#1d1f2e;--tx:#ecebf7;--mu:#9a9ab5;--ac:#a597ff;--on:#13141d;--ln:#2b2d40}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--ln)}
+.bar{display:flex;align-items:center;gap:12px;height:60px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.02em;cursor:pointer;white-space:nowrap}
+.logo span{color:var(--ac)}
+.search{flex:1;min-width:0;background:var(--sf);border:1px solid var(--ln);border-radius:999px;padding:8px 16px;outline:none}
+.search:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.ib{background:var(--sf);border:1px solid var(--ln);border-radius:999px;height:38px;padding:0 14px;cursor:pointer;white-space:nowrap}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px}
+.chip{flex:none;background:var(--sf);border:1px solid var(--ln);border-radius:999px;padding:6px 16px;cursor:pointer}
+.chip.on{background:var(--ac);color:var(--on);border-color:var(--ac);font-weight:600}
+h2{font-size:17px;margin:20px 0 10px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.th{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden}
+.th::after{content:"";position:absolute;left:50%;top:50%;width:36px;height:36px;margin:-18px;border-radius:50%;background:rgba(0,0,0,.35);clip-path:none}
+.th i{position:absolute;left:50%;top:50%;margin:-8px 0 0 -5px;border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;z-index:1}
+.dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.7);color:#fff;font-size:12px;padding:1px 7px;border-radius:6px;z-index:1}
+.card:hover .th{outline:2px solid var(--ac)}
+.ct{margin:6px 0 0;font-weight:600;font-size:14px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mt{color:var(--mu);font-size:13px}
+.empty{color:var(--mu);padding:40px 0;text-align:center}
+.player{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.player video{width:100%;height:100%;display:block}
+.demo{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.demo .pb{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#111;font-size:26px;cursor:pointer}
+.ctl{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:13px}
+.trk{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.3);cursor:pointer;position:relative}
+.trk b{position:absolute;left:0;top:0;bottom:0;background:#fff;border-radius:3px}
+.note{background:var(--sf);border:1px dashed var(--ln);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--mu);margin-top:12px}
+.tag{display:inline-block;background:var(--sf);border:1px solid var(--ln);border-radius:999px;padding:1px 12px;font-size:13px;color:var(--mu)}
+.watch{display:grid;gap:24px;padding-top:18px}
+@media(min-width:860px){.watch{grid-template-columns:1fr 300px}}
+.rel{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ad{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:12px;border:1px dashed var(--ln);border-radius:10px;color:var(--mu);font-size:13px;text-align:center;padding:6px 12px;overflow:hidden;text-decoration:none}
+.ad img{max-width:100%;display:block}
+.tg{color:var(--mu);font-size:13px}.tg a{color:var(--ac);text-decoration:none;font-weight:600}
+.ad{position:relative;color:var(--tx)}.ad b{font-size:15px}.lb{position:absolute;right:8px;top:3px;font-size:10px;color:var(--mu)}
+.pn{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px;display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--ln)}.ri{flex:1;min-width:0}
+.fm label{display:grid;gap:4px;font-size:14px;color:var(--mu)}
+.fm input,.fm select{background:var(--bg);border:1px solid var(--ln);border-radius:8px;padding:8px 10px;color:var(--tx)}
+footer{color:var(--mu);font-size:13px;text-align:center;padding:36px 0 24px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="bar">
+<div class="logo" id="logo">Ruang<span>Tonton</span></div>
+<input class="search" id="q" type="search" placeholder="Cari video..." aria-label="Cari video">
+<button class="ib" id="rnd" title="Putar video acak">Acak</button>
+<button class="ib" id="thm" aria-label="Ganti tema">Tema</button>
+</div></div></header>
+<main class="wrap" id="app"></main>
+<footer id="ft"></footer>
+
+<script>
+// ===== PENGATURAN =====
+// Isi dengan alamat R2 kamu, harus diakhiri garis miring. Contoh: "https://pub-xxxx.r2.dev/"
+// Kalau kosong, nama file dianggap ada di dalam repo GitHub yang sama.
+var VIDEO_BASE = "";
+// Kontak Telegram untuk iklan (ganti dengan username kamu)
+var TELEGRAM = "https://t.me/usernamekamu";
+// Ubah ke false setelah web live, supaya slot iklan yang kosong tidak terlihat
+var TAMPIL_KOSONG = false;
+
+// ===== DAFTAR VIDEO =====
+// Diatur lewat panel admin (#/admin) dan tersimpan di videos.json.
+// Contoh isi: {id:1,t:"Judul",c:"Kategori",file:"video1.mp4",thumb:"video1.jpg",d:750,date:"2026-10-01",desc:"Deskripsi"}
+var VIDEOS = [];
+
+var $ = function(s){return document.querySelector(s)};
+var app = $("#app"), state = {cat:"Semua", q:""}, timer = null, siap = false;
+
+var ADS=[];
+var SLOTS={"beranda-atas":"Beranda, bawah kategori","beranda-tengah":"Beranda, antara daftar","tonton":"Halaman tonton, bawah video","samping":"Halaman tonton, samping"};
+function esc(x){return String(x==null?"":x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function ad(slot){
+ var today=new Date().toISOString().slice(0,10);
+ var l=ADS.filter(function(a){return a.aktif&&a.tempat===slot&&(!a.sampai||a.sampai>=today)});
+ if(!l.length) return TAMPIL_KOSONG?'<div class="ad">Slot iklan kosong ('+SLOTS[slot]+')</div>':'';
+ var a=l[Math.floor(Math.random()*l.length)], ok=/^https?:\/\//.test(a.link);
+ var inner=a.img?'<img src="'+esc(a.img)+'" alt="'+esc(a.judul)+'">':'<b>'+esc(a.judul)+'</b>';
+ return '<a class="ad"'+(ok?' href="'+esc(a.link)+'" target="_blank" rel="noopener sponsored"':'')+'>'+inner+'<small class="lb">Iklan</small></a>';
+}
+function cta(){return '<span class="tg">Mau pasang iklan? <a href="'+TELEGRAM+'" target="_blank" rel="noopener">Hubungi via Telegram</a></span>'}
+function u(x){return /^https?:\/\//.test(x)?x:VIDEO_BASE+x}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return m+":"+(x<10?"0":"")+x}
+function grad(h){return "linear-gradient(135deg,hsl("+h+" 65% 45%),hsl("+(h+50)+" 60% 30%))"}
+function cats(){var a=["Semua"];VIDEOS.forEach(function(v){if(a.indexOf(v.c)<0)a.push(v.c)});return a}
+
+function card(v){
+ var bg=v.thumb?'url('+encodeURI(u(v.thumb)).replace(/\)/g,"%29")+') center/cover':grad(v.h!=null?v.h:(v.id*67)%360);
+ return '<button class="card" data-id="'+v.id+'"><div class="th" style="background:'+bg+'"><i></i>'+(v.d?'<span class="dur">'+fmt(v.d)+'</span>':'')+'</div><p class="ct">'+esc(v.t)+'</p><span class="mt">'+esc(v.c)+'</span></button>';
+}
+
+function home(){
+ clearInterval(timer);
+ var list = VIDEOS.filter(function(v){
+  return (state.cat==="Semua"||v.c===state.cat) && v.t.toLowerCase().indexOf(state.q.toLowerCase())>-1;
+ });
+ var h = '<div class="chips">'+cats().map(function(c){return '<button class="chip'+(c===state.cat?' on':'')+'" data-cat="'+c+'">'+c+'</button>'}).join("")+'</div>'+ad("beranda-atas");
+ var fresh = state.cat==="Semua" && !state.q;
+ if(fresh&&VIDEOS.length>6){
+  var n = VIDEOS.slice().sort(function(a,b){return a.date<b.date?1:-1}).slice(0,4);
+  h += '<h2>Baru ditambahkan</h2><div class="grid">'+n.map(card).join("")+'</div>'+ad("beranda-tengah");
+ }
+ h += '<h2>'+(fresh?'Semua video':(state.q?'Hasil pencarian':state.cat))+' <span class="mt">('+list.length+')</span></h2>';
+ h += list.length ? '<div class="grid">'+list.map(card).join("")+'</div>' : '<div class="empty">'+(!siap?'Memuat...':VIDEOS.length?'Tidak ada video yang cocok. Coba kata kunci atau kategori lain.':'Belum ada video. Segera hadir.')+'</div>';
+ app.innerHTML = h;
+ window.scrollTo(0,0);
+}
+
+function watch(id){
+ var v = VIDEOS.filter(function(x){return x.id===id})[0];
+ if(!v){ if(!siap){app.innerHTML='<div class="empty">Memuat...</div>';return} location.hash="";return }
+ var rel = VIDEOS.filter(function(x){return x.c===v.c&&x.id!==v.id});
+ if(rel.length<3) rel = rel.concat(VIDEOS.filter(function(x){return x.c!==v.c&&x.id!==v.id}).slice(0,3-rel.length));
+ app.innerHTML = '<div class="watch"><div><div class="player"><video controls controlsList="nodownload noremoteplayback" disablePictureInPicture playsinline preload="metadata" oncontextmenu="return false" src="'+esc(u(v.file))+'"></video></div>'+
+  '<h1 style="font-size:22px;margin:16px 0 6px;letter-spacing:-.01em">'+esc(v.t)+'</h1><span class="tag">'+esc(v.c)+'</span> <span class="mt">&nbsp;'+esc(v.date)+'</span><p>'+esc(v.desc)+'</p>'+
+  '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="ib" id="back">Kembali</button>'+cta()+'</div>'+ad("tonton")+'</div>'+
+  '<aside>'+ad("samping")+(rel.length?'<h2 style="margin-top:12px">Video lainnya</h2><div class="rel">'+rel.map(card).join("")+'</div>':'')+'</aside></div>';
+ window.scrollTo(0,0);
+}
+
+function admin(){
+ var g=function(k){try{return localStorage.getItem(k)||""}catch(e){return ""}};
+ var vr=VIDEOS.map(function(v,i){return '<div class="row"><div class="ri"><b>'+esc(v.t)+'</b><br><span class="mt">'+esc(v.c)+' | '+esc(v.file)+'</span></div><button class="ib" data-ved="'+i+'">Ubah</button><button class="ib" data-vdl="'+i+'">Hapus</button></div>'}).join("");
+ var ar=ADS.map(function(a,i){return '<div class="row"><input type="checkbox" data-tg="'+i+'"'+(a.aktif?' checked':'')+' aria-label="Aktif"><div class="ri"><b>'+esc(a.judul||"(gambar)")+'</b><br><span class="mt">'+SLOTS[a.tempat]+(a.sampai?', sampai '+a.sampai:'')+'</span></div><button class="ib" data-ed="'+i+'">Ubah</button><button class="ib" data-dl="'+i+'">Hapus</button></div>'}).join("");
+ var opts=Object.keys(SLOTS).map(function(k){return '<option value="'+k+'">'+SLOTS[k]+'</option>'}).join("");
+ var kat=cats().filter(function(c){return c!=="Semua"}).map(function(c){return '<option value="'+esc(c)+'">'}).join("");
+ app.innerHTML='<h2>Panel admin</h2>'+
+ '<h2 style="margin-top:0;font-size:16px">Video</h2><div class="pn">'+(vr||'<div class="empty">Belum ada video.</div>')+'</div>'+
+ '<h2 style="font-size:16px">Tambah atau ubah video</h2><div class="pn fm"><input type="hidden" id="v_i" value="-1"><label>Judul<input id="v_j"></label><label>Kategori<input id="v_c" list="kt" placeholder="Contoh: Tutorial"></label><datalist id="kt">'+kat+'</datalist><label>Nama file video<input id="v_f" placeholder="video1.mp4"></label><label>Gambar sampul (boleh kosong)<input id="v_m" placeholder="video1.jpg"></label><label>Durasi (contoh 12:30, boleh kosong)<input id="v_d"></label><label>Deskripsi (boleh kosong)<input id="v_x"></label><div><button class="ib" id="v_ok">Simpan video</button></div></div>'+
+ '<h2 style="font-size:16px">Iklan</h2><div class="pn">'+(ar||'<div class="empty">Belum ada iklan.</div>')+'</div>'+
+ '<h2 style="font-size:16px">Tambah atau ubah iklan</h2><div class="pn fm"><input type="hidden" id="f_i" value="-1"><label>Teks iklan<input id="f_j"></label><label>Alamat gambar (boleh kosong)<input id="f_m" placeholder="https://..."></label><label>Link tujuan<input id="f_l" placeholder="https://..."></label><label>Tempat tampil<select id="f_t">'+opts+'</select></label><label>Tayang sampai (boleh kosong)<input id="f_s" type="date"></label><div><button class="ib" id="f_ok">Simpan iklan</button></div></div>'+
+ '<h2 style="font-size:16px">Terapkan ke web</h2><div class="pn fm"><label>Repo GitHub<input id="g_r" value="'+esc(g("gh_repo"))+'" placeholder="usernamekamu/nama-repo"></label><label>Token GitHub<input id="g_k" type="password" value="'+esc(g("gh_tok"))+'" placeholder="github_pat_..."></label><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ib" id="g_ok">Simpan ke GitHub</button><button class="ib" id="g_cv">Salin JSON video</button><button class="ib" id="g_cp">Salin JSON iklan</button></div><div class="note" id="st">Perubahan baru tampil di web setelah Simpan ke GitHub (tayang sekitar 1 menit).</div></div>';
+}
+function say(m){var e=$("#st");if(e)e.textContent=m}
+function dur(x){x=x.trim();if(!x)return 0;var q=x.split(":");return q.length>1?(+q[0]||0)*60+(+q[1]||0):(+q[0]||0)*60}
+function put(repo,path,data,h){
+ var url="https://api.github.com/repos/"+repo+"/contents/"+path;
+ return fetch(url,{headers:h}).then(function(r){return r.ok?r.json():{}}).then(function(cur){
+  var b={message:"Update "+path,content:btoa(unescape(encodeURIComponent(JSON.stringify(data,null,1))))};
+  if(cur.sha)b.sha=cur.sha;
+  return fetch(url,{method:"PUT",headers:h,body:JSON.stringify(b)});
+ });
+}
+function save(){
+ var repo=$("#g_r").value.trim(),tok=$("#g_k").value.trim();
+ if(!repo||!tok){say("Isi nama repo dan token dulu.");return}
+ if(!siap){say("Data masih dimuat, coba lagi sebentar.");return}
+ try{localStorage.setItem("gh_repo",repo);localStorage.setItem("gh_tok",tok)}catch(e){}
+ var h={Authorization:"Bearer "+tok,Accept:"application/vnd.github+json"};
+ say("Menyimpan...");
+ put(repo,"videos.json",VIDEOS,h).then(function(r){if(!r.ok)throw r.status;return put(repo,"ads.json",ADS,h)}).then(function(r){if(!r.ok)throw r.status;say("Tersimpan. Perubahan tayang sekitar 1 menit lagi.")}).catch(function(e){say(typeof e==="number"?"Gagal menyimpan (kode "+e+"). Periksa nama repo dan token.":"Tidak bisa terhubung ke GitHub. Coba lagi, atau pakai Salin JSON.")});
+}
+function salin(d){navigator.clipboard.writeText(JSON.stringify(d,null,1)).then(function(){say("JSON tersalin.")},function(){say("Gagal menyalin.")})}
+app.addEventListener("change",function(e){var t=e.target;if(t.dataset.tg!==undefined)ADS[+t.dataset.tg].aktif=t.checked});
+app.addEventListener("click",function(e){
+ if(location.hash!=="#/admin")return;
+ var t=e.target,id=t.id;
+ if(t.dataset.vdl!==undefined){VIDEOS.splice(+t.dataset.vdl,1);admin();return}
+ if(t.dataset.ved!==undefined){var k=+t.dataset.ved,v=VIDEOS[k];$("#v_i").value=k;$("#v_j").value=v.t;$("#v_c").value=v.c;$("#v_f").value=v.file;$("#v_m").value=v.thumb||"";$("#v_d").value=v.d?fmt(v.d):"";$("#v_x").value=v.desc||"";$("#v_j").focus();return}
+ if(id==="v_ok"){
+  var j=$("#v_j").value.trim(),c=$("#v_c").value.trim(),f=$("#v_f").value.trim(),n=+$("#v_i").value;
+  if(!j||!c||!f){say("Judul, kategori, dan nama file wajib diisi.");return}
+  var o={id:Date.now(),t:j,c:c,file:f,thumb:$("#v_m").value.trim(),d:dur($("#v_d").value),date:new Date().toISOString().slice(0,10),desc:$("#v_x").value.trim()};
+  if(n>=0){o.id=VIDEOS[n].id;o.date=VIDEOS[n].date;VIDEOS[n]=o}else VIDEOS.unshift(o);
+  admin();return}
+ if(t.dataset.dl!==undefined){ADS.splice(+t.dataset.dl,1);admin();return}
+ if(t.dataset.ed!==undefined){var i=+t.dataset.ed,a=ADS[i];$("#f_i").value=i;$("#f_j").value=a.judul;$("#f_m").value=a.img;$("#f_l").value=a.link;$("#f_t").value=a.tempat;$("#f_s").value=a.sampai;$("#f_j").focus();return}
+ if(id==="f_ok"){
+  var j2=$("#f_j").value.trim(),m=$("#f_m").value.trim(),n2=+$("#f_i").value;
+  if(!j2&&!m){say("Isi teks iklan atau alamat gambar dulu.");return}
+  var o2={id:Date.now(),judul:j2,img:m,link:$("#f_l").value.trim(),tempat:$("#f_t").value,aktif:true,sampai:$("#f_s").value};
+  if(n2>=0){o2.id=ADS[n2].id;o2.aktif=ADS[n2].aktif;ADS[n2]=o2}else ADS.push(o2);
+  admin();return}
+ if(id==="g_cv"){salin(VIDEOS);return}
+ if(id==="g_cp"){salin(ADS);return}
+ if(id==="g_ok")save();
+});
+function route(){
+ if(location.hash==="#/admin"){admin();return}
+ var m = location.hash.match(/^#\/v\/(\d+)/);
+ m ? watch(+m[1]) : home();
+}
+
+app.addEventListener("click",function(e){
+ var c=e.target.closest("[data-cat]"); if(c){state.cat=c.dataset.cat;home();return}
+ var k=e.target.closest("[data-id]"); if(k){location.hash="#/v/"+k.dataset.id;return}
+ if(e.target.id==="back"){history.length>1?history.back():(location.hash="")}
+});
+$("#q").addEventListener("input",function(){state.q=this.value;if(location.hash){location.hash=""}else home()});
+$("#logo").onclick=function(){state.cat="Semua";state.q="";$("#q").value="";location.hash="";home()};
+$("#rnd").onclick=function(){location.hash="#/v/"+VIDEOS[Math.floor(Math.random()*VIDEOS.length)].id};
+$("#thm").onclick=function(){
+ var r=document.documentElement, dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+ r.dataset.theme=dark?"light":"dark";
+ try{localStorage.setItem("tema",r.dataset.theme)}catch(e){}
+};
+try{var s=localStorage.getItem("tema");if(s)document.documentElement.dataset.theme=s}catch(e){}
+$("#ft").innerHTML=cta();
+function muat(f){return fetch(f,{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+Promise.all([muat("videos.json"),muat("ads.json")]).then(function(r){if(r[0])VIDEOS=r[0];if(r[1])ADS=r[1];siap=true;route()});
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>
